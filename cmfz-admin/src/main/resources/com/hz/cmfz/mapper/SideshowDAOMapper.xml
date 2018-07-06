@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "../mybatis-3-mapper.dtd" >
+<mapper namespace="com.hz.cmfz.dao.SideshowDAO">
+    
+    <resultMap type="com.hz.cmfz.entity.Sideshow" id="SideshowResultMap">
+    <id property="id" column="id"/>
+        <result property="picName" column="pic_name"/>
+        <result property="description" column="description"/>
+        <result property="picStatus" column="pic_status"/>
+        <result property="picDate" column="pic_date"/>
+
+    </resultMap>
+    <select id="selectAll" resultMap="SideshowResultMap">
+        select * from sideshow limit #{begin},#{showSize}
+    </select>
+
+    <select id="countSideshow" resultType="int">
+        select count(*) from sideshow
+    </select>
+
+    <select id="select" resultMap="SideshowResultMap">
+        select * from sideshow where id=#{id}
+    </select>
+
+    <insert id="insert">
+        insert into sideshow values (#{id},#{picName},#{description},#{picStatus},#{picDate})
+    </insert>
+
+    <update id="update">
+        update sideshow set pic_name=#{picName},description=#{description},pic_status=#{picStatus},pic_date=#{picDate} where id=#{id}
+    </update>
+
+    <delete id="delete">
+        delete from sideshow where id=#{id}
+    </delete>
+</mapper>

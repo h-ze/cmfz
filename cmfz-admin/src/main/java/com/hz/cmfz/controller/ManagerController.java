@@ -37,14 +37,13 @@ public class ManagerController {
             manager = ms.query(managerName,managerPwd);
             if(manager != null ){
                 if(checkName != null){
-                    System.out.println("aa");
                     Cookie userCookie=new Cookie("checkName", URLEncoder.encode(managerName,"UTF-8"));
                     userCookie.setMaxAge(30*24*60*60);
                     userCookie.setPath("/");
                     response.addCookie(userCookie);
                 }
 
-                return "redirect:/index.jsp";
+                return "redirect:/main/main.jsp";
             }
             return "redirect:/error.jsp";
         }
