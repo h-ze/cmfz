@@ -92,12 +92,16 @@ $(function(){
 							},
 							success:function(res){
 								if(res == "success"){
+<<<<<<< HEAD
                                     $.messager.show({
                                         title:"消息提醒",
                                         msg:"上传成功，页面在5秒后关闭！",
                                         timeout:5000,
                                         showType:"slider",
                                     });
+=======
+									$.messager.alert('提示','添加成功！');
+>>>>>>> origin/master
 									$("#dialog").dialog("close");
 									$("#dg12").datagrid({
 										url:"/cmfz-admin/Sideshow/query.do",
@@ -146,7 +150,11 @@ function updatebtn(){
                 href:"/cmfz-admin/main/form2.jsp",
                 modal:true,
                 buttons:[{
+<<<<<<< HEAD
                     iconCls:"icon-edit",
+=======
+                    iconCls:"icon-eidt",
+>>>>>>> origin/master
                     text:"保存",
                     handler:function(){
                         //提交
@@ -194,6 +202,23 @@ function updatebtn(){
 
 
 
+<<<<<<< HEAD
+=======
+function qq(value,name){
+	if(name=="name"){
+		$('#dg12').datagrid({
+		    url:'/cmfz-admin/Sideshow/query.do?name='+value,
+		    
+		}); 
+	}
+	if(name=="id"){
+		$('#dg12').datagrid({
+		    url:'/cmfz-admin/Sideshow/query.do?id='+value,
+
+		});
+	}
+}
+>>>>>>> origin/master
 
 </script>
 

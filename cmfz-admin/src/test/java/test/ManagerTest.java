@@ -2,11 +2,17 @@ package test;
 
 import com.hz.cmfz.dao.ManagerDAO;
 import com.hz.cmfz.entity.Manager;
+<<<<<<< HEAD
 import com.hz.cmfz.entity.Master;
 import com.hz.cmfz.entity.Menu;
 import com.hz.cmfz.entity.Sideshow;
 import com.hz.cmfz.service.ManagerService;
 import com.hz.cmfz.service.MasterService;
+=======
+import com.hz.cmfz.entity.Menu;
+import com.hz.cmfz.entity.Sideshow;
+import com.hz.cmfz.service.ManagerService;
+>>>>>>> origin/master
 import com.hz.cmfz.service.MenuService;
 import com.hz.cmfz.service.SideshowService;
 import com.hz.cmfz.utils.DateConvertUtils;
@@ -26,7 +32,10 @@ public class ManagerTest {
     private ManagerService mgr = (ManagerService) ac.getBean("managerServiceImpl");
     private MenuService ms = (MenuService) ac.getBean("menuServiceImpl");
     private SideshowService sideshowService=(SideshowService) ac.getBean("sideshowServiceImpl");
+<<<<<<< HEAD
     private MasterService masterService=(MasterService)ac.getBean("masterServiceImpl");
+=======
+>>>>>>> origin/master
     @Test
     public void select(){
         Manager manager=mgr.query("何ze","123456");
@@ -88,9 +97,12 @@ public class ManagerTest {
          sideshowService.remove("12");
 
     }
+<<<<<<< HEAD
     @Test
     public void select11(){
         Map<String,Object> map=masterService.findAll(5,2,"zs");
         System.out.println(map);
     }
+=======
+>>>>>>> origin/master
 }
