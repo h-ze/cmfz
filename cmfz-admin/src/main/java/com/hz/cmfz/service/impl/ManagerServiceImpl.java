@@ -3,6 +3,8 @@ package com.hz.cmfz.service.impl;
 import com.hz.cmfz.dao.ManagerDAO;
 import com.hz.cmfz.entity.Manager;
 import com.hz.cmfz.service.ManagerService;
+import com.hz.cmfz.utils.EncryptionUtils;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -21,6 +23,10 @@ public class ManagerServiceImpl implements ManagerService{
     @Override
     public Manager query(String mgrName, String mgrPwd) {
         Manager manager =md.Select(mgrName);
+        String salt =EncryptionUtils.getRandomSalt(6);
+        System.out.println(salt+"hhh");
+        String newPwd =DigestUtils.md5Hex(manager.getMgrPwd()+manager.getSalt());
+        System.out.println(newPwd);
         if(mgrPwd.equals(manager.getMgrPwd()) && manager != null){
             return manager;
         }else
