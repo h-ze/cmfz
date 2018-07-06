@@ -4,39 +4,18 @@
 <script type="text/javascript">
 $(function(){
 	
-	$('#dg12').datagrid({
+	$('#dg123').datagrid({
         remoteSort:false,
         singleSelect:true,
         nowrap:false,
         fitColumns:true,
-	    url:'/cmfz-admin/Sideshow/query.do',
+	    url:'/cmfz-admin/Master/query.do',
 	    columns:[[    
-	        {field:'id',title:'标识编号',width:80},
-	        {field:'picName',title:'图片姓名',width:80},
-	        {field:'description',title:'详情',width:80},
-	        {field:'picStatus',title:'状态',width:80,
-                formatter:function (value) {
-                    return value == '展示中' ? '<font style="color:red">展示中</font>' : '未展示'
-                }
-            },
-	        {field:'picDate',title:'日期',width:80,
-                formatter : function(value){
-                    var date = new Date(value);
-                    var y = date.getFullYear();
-                    var m = date.getMonth() + 1;
-                    var d = date.getDate();
-                    var h = date.getHours();
-                    var m1 =date.getMinutes();
-                    var s = date.getSeconds();
-                    if (m <10){
-                        return y + '-' +"0"+m + '-' + d;
-                    }
+	        {field:'masterId',title:'上师编号',width:80},
+	        {field:'masterName',title:'上师姓名',width:80},
+	        {field:'masterPhoto',title:'上师照片',width:80},
+            {field:'masterSummary',title:'上师简介',width:80},
 
-                    return y + '-' +m + '-' + d
-                        ;
-                }
-
-            },
 	        {field:"operation",title:"操作",width:40,formatter:function(value,row,index){
 	        	//$("#del").linkbutton({});
 				return "<a class='easyui-linkbutton' data-options=\"height:20,iconCls:'icon-edit'\" onClick='updatebtn()'>修改</a> ";
@@ -60,7 +39,7 @@ $(function(){
 	    pagination:true,
 	    pageList : [ 5, 10, 15, 20, 25 ],
 		pageSize : 5,
-		toolbar : "#tb",
+		toolbar : "#tb1",
 		fitColumns: true,
 		singleSelect:true,
 		
@@ -68,17 +47,17 @@ $(function(){
 	
 
 	
-	$("#addUser").linkbutton({
+	$("#addMaster").linkbutton({
 		onClick:function(){
-			$("#dialog").dialog({
+			$("#dialog_master").dialog({
 				width:450,
 				height:200,
-				title:"新增轮播",
+				title:"新增上师",
 				toolbar:[{
 					iconCls:"icon-help",
 					text:"help"
 				}],
-				href:"/cmfz-admin/main/form1.jsp",
+				href:"/cmfz-admin/main/form3.jsp",
 				modal:true,
 				buttons:[{
 					iconCls:"icon-edit",
@@ -86,21 +65,16 @@ $(function(){
 					handler:function(){
 						//提交
 						$("#ff").form("submit",{
-							url:"/cmfz-admin/Sideshow/add.do",
+							url:"/cmfz-admin/Master/add.do",
 							onSubmit:function(){
 								return $("#ff").form("validate");
 							},
 							success:function(res){
 								if(res == "success"){
-                                    $.messager.show({
-                                        title:"消息提醒",
-                                        msg:"上传成功，页面在5秒后关闭！",
-                                        timeout:5000,
-                                        showType:"slider",
-                                    });
-									$("#dialog").dialog("close");
-									$("#dg12").datagrid({
-										url:"/cmfz-admin/Sideshow/query.do",
+									$.messager.alert('提示','添加成功！');
+									$("#dialog_master").dialog("close");
+									$("#dg123").datagrid({
+										url:"/cmfz-admin/Master/query.do",
 									});
 								}
 							}
@@ -117,7 +91,7 @@ $(function(){
 							showType:"slider",
 						});
 						
-						$("#dialog").dialog("close");
+						$("#dialog_master").dialog("close");
 					}
 				}],
 			});
@@ -134,33 +108,33 @@ $(function(){
 });
 
 function updatebtn(){
-        var rowData = $("#dg12").datagrid("getSelected");
-            $("#dialog").dialog({
+        var rowData = $("#dg123").datagrid("getSelected");
+            $("#dialog_master").dialog({
                 width:450,
                 height:200,
-                title:"修改用户",
+                title:"修改上师信息",
                 toolbar:[{
                     iconCls:"icon-help",
                     text:"help"
                 }],
-                href:"/cmfz-admin/main/form2.jsp",
+                href:"/cmfz-admin/main/form4.jsp",
                 modal:true,
                 buttons:[{
-                    iconCls:"icon-edit",
+                    iconCls:"icon-eidt",
                     text:"保存",
                     handler:function(){
                         //提交
                         $("#ff").form("submit",{
-                            url:"/cmfz-admin/Sideshow/update.do?id="+rowData.id,
+                            url:"/cmfz-admin/Master/update.do?id="+rowData.id,
                             onSubmit:function(){
                                 return $("#ff").form("validate");
                             },
                             success:function(res){
                                 if(res == "success"){
                                     $.messager.alert('提示','修改成功！');
-                                    $("#dialog").dialog("close");
-                                    $("#dg12").datagrid({
-                                        url:"/cmfz-admin/Sideshow/query.do",
+                                    $("#dialog_master").dialog("close");
+                                    $("#dg123").datagrid({
+                                        url:"/cmfz-admin/Master/query.do",
                                     });
                                 }
                             }
@@ -179,7 +153,7 @@ function updatebtn(){
                             showType:"slider",
                         });
 
-                        $("#dialog").dialog("close");
+                        $("#dialog_master").dialog("close");
                     }
                 }],
                 onLoad:function(){
@@ -194,15 +168,34 @@ function updatebtn(){
 
 
 
+function qq(value,name){
+	if(name=="name"){
+		$('#dg123').datagrid({
+		    url:'/cmfz-admin/Master/query.do?masterName='+value,
+		    
+		}); 
+	}
+	if(name=="id"){
+		$('#dg123').datagrid({
+		    url:'/cmfz-admin/Master/query.do?id='+value,
+
+		});
+	}
+}
 
 </script>
 
-<table id="dg12"></table>
-<div id="tb">
-<a id="addUser" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true,text:'新增轮播图'"></a>
+<table id="dg123"></table>
+<div id="tb1">
+<a id="addMaster" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true,text:'新增上师'"></a>
 <a id="editUser" class="easyui-linkbutton" data-options="iconCls:'icon-help',plain:true,text:'帮助'"></a>
+    <input id="ss" class="easyui-searchbox" style="width:300px"
+           data-options="searcher:qq,prompt:'请输入要搜索的关键字',menu:'#mm'"></input>
 
+    <div id="mm" style="width:120px">
+        <div data-options="name:'name',iconCls:'icon-ok'">姓名</div>
 </div>
-<div id="dialog"></div>
+</div>
+<div id="dialog_master"></div>
 
 
