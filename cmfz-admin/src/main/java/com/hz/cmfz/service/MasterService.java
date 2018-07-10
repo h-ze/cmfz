@@ -2,6 +2,7 @@ package com.hz.cmfz.service;
 
 import com.hz.cmfz.entity.Master;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,6 +13,10 @@ public interface MasterService {
     public Map<String,Object> findAll(int pageSize, int pageIndex,String dim);
 
     public Master find(String masterId);
+
+    public List<Master> findName();
+
+    public List<Master> downloadAll();
 
     public int add(Master master);
 

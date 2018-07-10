@@ -39,7 +39,7 @@ $(function(){
             },
 	        {field:"operation",title:"操作",width:40,formatter:function(value,row,index){
 	        	//$("#del").linkbutton({});
-				return "<a class='easyui-linkbutton' data-options=\"height:20,iconCls:'icon-edit'\" onClick='updatebtn()'>修改</a> ";
+				return "<a  name='qu' class='easyui-linkbutton' data-options=\"height:20,iconCls:'icon-edit'\" onClick='updatebtn()'>修改</a> ";
 			}},
 	    ]],
         view:detailview,
@@ -55,7 +55,7 @@ $(function(){
             onLoadSuccess:function(){
 	    	/* console.log(11);
 	    	$(".btn").linkbutton({}); */
-	    	$.parser.parse(); 
+                $("a[name='qu']").linkbutton({});
 	    },
 	    pagination:true,
 	    pageList : [ 5, 10, 15, 20, 25 ],
@@ -85,23 +85,23 @@ $(function(){
 					text:"保存",
 					handler:function(){
 						//提交
-						$("#ff").form("submit",{
+						$("#ff1").form("submit",{
 							url:"/cmfz-admin/Sideshow/add.do",
 							onSubmit:function(){
-								return $("#ff").form("validate");
+								return $("#ff1").form("validate");
 							},
 							success:function(res){
 								if(res == "success"){
-<<<<<<< HEAD
+
                                     $.messager.show({
                                         title:"消息提醒",
                                         msg:"上传成功，页面在5秒后关闭！",
                                         timeout:5000,
                                         showType:"slider",
                                     });
-=======
+
 									$.messager.alert('提示','添加成功！');
->>>>>>> origin/master
+
 									$("#dialog").dialog("close");
 									$("#dg12").datagrid({
 										url:"/cmfz-admin/Sideshow/query.do",
@@ -150,18 +150,18 @@ function updatebtn(){
                 href:"/cmfz-admin/main/form2.jsp",
                 modal:true,
                 buttons:[{
-<<<<<<< HEAD
+
                     iconCls:"icon-edit",
-=======
+
                     iconCls:"icon-eidt",
->>>>>>> origin/master
+
                     text:"保存",
                     handler:function(){
                         //提交
-                        $("#ff").form("submit",{
+                        $("#ff2").form("submit",{
                             url:"/cmfz-admin/Sideshow/update.do?id="+rowData.id,
                             onSubmit:function(){
-                                return $("#ff").form("validate");
+                                return $("#ff2").form("validate");
                             },
                             success:function(res){
                                 if(res == "success"){
@@ -191,7 +191,7 @@ function updatebtn(){
                     }
                 }],
                 onLoad:function(){
-                    $("#ff").form("load",rowData); //在加载表单时将行数据加载到表单元素中
+                    $("#ff2").form("load",rowData); //在加载表单时将行数据加载到表单元素中
                 }
             });
 
@@ -202,8 +202,7 @@ function updatebtn(){
 
 
 
-<<<<<<< HEAD
-=======
+
 function qq(value,name){
 	if(name=="name"){
 		$('#dg12').datagrid({
@@ -218,7 +217,7 @@ function qq(value,name){
 		});
 	}
 }
->>>>>>> origin/master
+
 
 </script>
 

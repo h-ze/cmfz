@@ -34,7 +34,8 @@ public class ManagerController {
         if (vcode.isEmpty() || !vcode.equalsIgnoreCase(code)){
             return "redirect:/login.jsp";
         }else{
-            manager = ms.query(managerName,managerPwd);
+            manager = ms.find(managerName,managerPwd);
+            session.setAttribute("user",manager);
             if(manager != null ){
                 if(checkName != null){
                     Cookie userCookie=new Cookie("checkName", URLEncoder.encode(managerName,"UTF-8"));
@@ -70,7 +71,7 @@ public class ManagerController {
         System.out.println(managerName);
         Map<String,String> managerMap = new HashMap<String,String>();
         String flag="用户不存在";
-        Manager ma =ms.queryByName(managerName);
+        Manager ma =ms.findByName(managerName);
         System.out.println(ma);
         if (ma!=null) {
             flag="用户已存在";

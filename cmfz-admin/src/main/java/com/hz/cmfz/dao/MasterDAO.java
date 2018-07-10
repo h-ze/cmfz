@@ -11,7 +11,11 @@ import java.util.List;
 public interface MasterDAO {
     public List<Master> selectAll(@Param("begin") int begin,@Param("showSize") int showSize,@Param("dim") String dim);
 
-    public int countMaster();
+    public int countMaster(@Param("dim") String dim);
+
+    public List<Master> selectName();
+
+    public List<Master> downloadAll();
 
     public Master select(String masterId);
 

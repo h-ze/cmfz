@@ -5,14 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>持名法州主页</title>
-<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">   
-<<<<<<< HEAD
+<link rel="stylesheet" type="text/css" href="../themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="../themes/IconExtension.css"><link rel="stylesheet" type="text/css" href="../themes/icon.css">
 	<script type="text/javascript" src="../js/jquery.min.js"></script>
-=======
 <link rel="stylesheet" type="text/css" href="../themes/IconExtension.css">   
-<script type="text/javascript" src="../js/jquery.min.js"></script>   
->>>>>>> origin/master
+<script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>  
 <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript">
@@ -58,11 +55,12 @@
 							var pp = $('#aa').accordion('getSelected');
 							pp.empty();
 						$.each(data2, function(index, value) {
-						pp.css("text-align","center").append('<a class="easyui-linkbutton" data-options="iconCls:\''+data2[index].menuIcon+'\',plain:true" onclick="addTab(\''+data2[index].menuName+'\',\''+data2[index].menuUrl+'\')" >'+data2[index].menuName+'</a><br/>');
+						pp.css("text-align","center").append('<a name="zl" class="easyui-linkbutton" data-options="iconCls:\''+data2[index].menuIcon+'\',plain:true" onclick="addTab(\''+data2[index].menuName+'\',\''+data2[index].menuUrl+'\')" >'+data2[index].menuName+'</a><br/>');
 						});
 					}
 			});
-					$.parser.parse();
+					//$.parser.parse();
+                        $("a[name='zl']").linkbutton({});
 					}
 				});
 			}

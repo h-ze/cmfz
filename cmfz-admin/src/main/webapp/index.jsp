@@ -11,6 +11,9 @@
     <title>Title</title>
 </head>
 <body>
-<h1>true</h1>
+<%
+    response.sendRedirect("/cmfz-admin/main/main.jsp");
+%>>
+
 </body>
 </html>

@@ -25,8 +25,13 @@ public class MasterServiceImpl implements MasterService{
     @Override
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     public Map<String, Object> findAll(int pageSize, int pageIndex,String dim) {
+        if(dim != null){
+            dim = "%"+dim+"%";
+
+        }
+        System.out.println(dim);
         List<Master> masters = masterDAO.selectAll((pageIndex-1)*pageSize,pageSize,dim);
-        int i = masterDAO.countMaster();
+        int i = masterDAO.countMaster(dim);
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("total",i);
         map.put("rows",masters);
@@ -36,6 +41,18 @@ public class MasterServiceImpl implements MasterService{
     @Override
     public Master find(String masterId) {
         return masterDAO.select(masterId);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
+    public List<Master> findName() {
+        return masterDAO.selectName();
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
+    public List<Master> downloadAll() {
+        return masterDAO.downloadAll();
     }
 
     @Override

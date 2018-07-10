@@ -1,25 +1,23 @@
 package test;
 
+import cn.afterturn.easypoi.excel.ExcelImportUtil;
+import cn.afterturn.easypoi.excel.entity.ImportParams;
+import com.alibaba.fastjson.JSON;
 import com.hz.cmfz.dao.ManagerDAO;
-import com.hz.cmfz.entity.Manager;
-<<<<<<< HEAD
-import com.hz.cmfz.entity.Master;
+import com.hz.cmfz.entity.*;
+
+import com.hz.cmfz.service.*;
+
 import com.hz.cmfz.entity.Menu;
 import com.hz.cmfz.entity.Sideshow;
 import com.hz.cmfz.service.ManagerService;
-import com.hz.cmfz.service.MasterService;
-=======
-import com.hz.cmfz.entity.Menu;
-import com.hz.cmfz.entity.Sideshow;
-import com.hz.cmfz.service.ManagerService;
->>>>>>> origin/master
-import com.hz.cmfz.service.MenuService;
-import com.hz.cmfz.service.SideshowService;
 import com.hz.cmfz.utils.DateConvertUtils;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -32,13 +30,12 @@ public class ManagerTest {
     private ManagerService mgr = (ManagerService) ac.getBean("managerServiceImpl");
     private MenuService ms = (MenuService) ac.getBean("menuServiceImpl");
     private SideshowService sideshowService=(SideshowService) ac.getBean("sideshowServiceImpl");
-<<<<<<< HEAD
     private MasterService masterService=(MasterService)ac.getBean("masterServiceImpl");
-=======
->>>>>>> origin/master
+    private ArticleService articleService=(ArticleService)ac.getBean("articleServiceImpl");
+
     @Test
     public void select(){
-        Manager manager=mgr.query("何ze","123456");
+        Manager manager=mgr.find("何ze","123456");
                 if(manager != null){
                     System.out.println("存在");
                 }else
@@ -97,12 +94,25 @@ public class ManagerTest {
          sideshowService.remove("12");
 
     }
-<<<<<<< HEAD
+
     @Test
     public void select11(){
-        Map<String,Object> map=masterService.findAll(5,2,"zs");
-        System.out.println(map);
+        //Map<String,Object> map=articleService.findAll(5,1);
+        Article article =articleService.find("1");
+        System.out.println(article);
     }
-=======
->>>>>>> origin/master
+
+    @Test
+    public void  in(){
+        ImportParams params = new ImportParams();
+        params.setTitleRows(0);
+        params.setHeadRows(1);
+        List<Master> list = ExcelImportUtil.importExcel(new File("d:/master.xls"),Master.class,params);
+        System.out.println(JSON.toJSONString(list));
+    }
+    @Test
+    public void  in1(){
+        List<Master> list =masterService.findName();
+        System.out.println(list);
+    }
 }

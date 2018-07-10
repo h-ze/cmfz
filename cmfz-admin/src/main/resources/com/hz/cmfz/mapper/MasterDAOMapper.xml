@@ -14,17 +14,26 @@
         limit #{begin},#{showSize}
     </select>
 
+    <select id="selectName" resultMap="MasterResultMap">
+        select master_id,master_name,master_photo,master_summary from master
+    </select>
+
     <select id="select" resultMap="MasterResultMap">
         select * from master where master_id =#{masterId}
     </select>
     
     <select id="countMaster" resultType="int">
         select count(*) from master
+        <if test="dim!=null">where master_name like #{dim}</if>
     </select>
 
     <insert id="insert">
         insert into master values (#{masterId},#{masterName},#{masterPhoto},#{masterSummary})
     </insert>
+
+    <select id="downloadAll" resultMap="MasterResultMap">
+        select * from master
+    </select>
 
     <update id="update">
         update master set master_name=#{masterName},master_photo=#{masterPhoto},master_summary=#{masterSummary} where master_id=#{masterId}

@@ -8,7 +8,7 @@
     function test() {
     }
 </script>
-<form id="ff" method="post" enctype="multipart/form-data">
+<form id="ff3" method="post" enctype="multipart/form-data">
     <div style="margin-left: 100px;margin-top: 20px">
         上师姓名：<input class="easyui-textbox" data-options="label:'轮播图描述:'" name="masterName"/> <br>
         上师照片：<input class="easyui-filebox" name="myFile"><br>

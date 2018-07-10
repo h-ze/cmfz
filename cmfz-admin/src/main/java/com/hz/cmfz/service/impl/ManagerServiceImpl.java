@@ -21,7 +21,7 @@ public class ManagerServiceImpl implements ManagerService{
     private ManagerDAO md;
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     @Override
-    public Manager query(String mgrName, String mgrPwd) {
+    public Manager find(String mgrName, String mgrPwd) {
         Manager manager =md.Select(mgrName);
         String salt =EncryptionUtils.getRandomSalt(6);
         System.out.println(salt+"hhh");
@@ -34,7 +34,7 @@ public class ManagerServiceImpl implements ManagerService{
     }
 
     @Override
-    public Manager queryByName(String mgrName) {
+    public Manager findByName(String mgrName) {
         Manager manager =md.Select(mgrName);
         if(manager != null){
             return manager;
